@@ -1,0 +1,7 @@
+/src/
+/build/
+/cache/
+/dist/
+/tmp/
+__pycache__/
+/sunset-dreams.mctp

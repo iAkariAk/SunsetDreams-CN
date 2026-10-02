@@ -1,0 +1,84 @@
+# Project name
+name = "sunset-dreams"
+# Path to the translation mapping JSON file (source -> target)
+mappings = "mappings.json"
+# Path to the term table JSON file
+terms = "terms.json"
+# Use pretty-printed JSON output
+pretty_json = true
+
+# Extraction pattern configuration
+[patterns]
+    # Paths to region data-pointer pattern JSON files (extract texts from block entities, signs, etc.)
+    nbt = { patterns = [ "patterns/nbt.json" ], has_builtin = true }
+    # Paths to mcjson data-pointer pattern JSON files
+    mcjson = { patterns = [ ], has_builtin = true }
+    # Paths to command extract pattern JSON files
+    command = { patterns = [ "patterns/command.json" ], has_builtin = true }
+    # Paths to command SNBT data-pointer pattern JSON files (extract data from command arguments)
+    command_data = { patterns = [ "patterns/nbt.json" ], has_builtin = true }
+    # Paths to command component pattern JSON files (extract data from command arguments which has component)
+    command_component = { patterns = [ ], has_builtin = true }
+    # Paths to command regex pattern JSON files
+    command_regex = [ "patterns/command_regex.json" ]
+    # Paths to cext pattern JSON files
+    cext = [ "patterns/cext.json" ]
+
+# Provide map info to help LLM better understand context
+[map_info]
+    name = "Sunset Dreams"
+    description = "You've gotten stuck in the dream world and there's a tremendous mess going on. Your only help will be the wise Walter, who will guide you to put an end to the nightmares. Arm yourself with courage and scuttle the Dreameater's Machiavellian plans. (CTM / adventure map for Minecraft 1.12.2)"
+    authors = [ "ElRichMC" ]
+
+# AI translation configuration
+[ai]
+    # OpenAI-compatible API base URL (e.g. https://api.openai.com/v1/ or https://api.deepseek.com/v1/)
+    api_url = "https://api.openai.com/v1/"
+    # API access token, Use @XXX to refer to your envvar
+    token = "Token / API Key"
+    # Model name (e.g. gpt-5-luna, deepseek-flash)
+    model = "gpt-4o"
+    # Use streaming API (can resolve empty response issues on some providers; default: true)
+    use_stream_api = true
+    # Max tokens per translation request
+    token_threshold = 2048
+    # Custom literature-style prompt for translation
+    literature_style = """
+- 使用简洁自然的中文，奇幻冒险、轻小说风格。
+- 保持原文的情感色彩和语气；惊叹、紧张、幽默都要保留。
+- 不要过度意译，忠实于原文含义，不添加原文没有的信息。
+- 人名、地名、称号意译优先、音译兜底：有明确语义的称号意译（如 Dreameater→噬梦者），人名音译（如 Walter→沃尔特）。
+- Minecraft 术语采用简体中文官方译名。
+- 原文中全角字符（如 Ａｕｍｅｎｔａ）是有意的观感设计，译文按同等宽度排版即可，不必逐字符对齐。
+"""
+    # Target language (e.g. 简体中文, English, 日本語; default: 简体中文)
+    target_language = "简体中文"
+    # Append static check to LLM; it maybe let thinking of LLM longer
+    static_check = false
+    # Temperature for the AI model (0.0-2.0, null = use model default, i.e. 1.0)
+    temperature = 1.0
+    # Enable aggressive gradient text handling (default: false)
+    handle_gradient = false
+    # Enable http logging for debug (default: false)
+    http_logging = false
+    # Enable LLM thinking output (default: false)
+    thinking_output = false
+
+# Api translation configuration
+[translation]
+    # Translate chunks concurrently. (WARN: parallelism will cause terms to be ineffective when using AI engine; default: 1)
+    concurrency = 1
+    # Translate different kinds of extraction concurrently. (WARN: parallelism will cause terms to be ineffective when using AI engine; default: false)
+    concurrent_by_kind = false
+
+    # The engine used to translate text
+    [translation.engine]
+        # The engine used to translate text
+        type = "ai"
+
+        [translation.engine.value]
+
+# MCT Patch configuration
+[patch]
+    # Kind of the created patch; `immediate` will evaluate the replacement groups immediately, `deferred` will evaluate that when apply the patch (default: immediate)
+    kind = "immediate"

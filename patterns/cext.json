@@ -1,0 +1,53 @@
+{
+ "customs": [
+  {
+   "select": "data[\\\\/]functions[\\\\/].*\\.mcfunction$",
+   "kind": {
+    "type": "mcfunction"
+   }
+  },
+  {
+   "select": "data[\\\\/](map_[0-9]+\\.dat|Fortress\\.dat)$",
+   "kind": {
+    "type": "nbt",
+    "compression": "gzip"
+   }
+  },
+  {
+   "select": "structures[\\\\/].*\\.nbt$",
+   "kind": {
+    "type": "nbt",
+    "compression": "gzip"
+   }
+  },
+  {
+   "select": "data[\\\\/]scoreboard\\.dat$",
+   "kind": {
+    "type": "nbt",
+    "compression": "gzip",
+    "patterns": {
+     "type": "custom",
+     "patterns": [
+      {
+       "type": "equal",
+       "value": ">#>#data>#Objectives>88>#DisplayName"
+      },
+      {
+       "type": "equal",
+       "value": ">#>#data>#Objectives>93>#DisplayName"
+      },
+      {
+       "type": "equal",
+       "value": ">#>#data>#Objectives>125>#DisplayName"
+      }
+     ]
+    }
+   }
+  }
+ ],
+ "opt_in": [
+  {
+   "type": "level_dat"
+  }
+ ]
+}

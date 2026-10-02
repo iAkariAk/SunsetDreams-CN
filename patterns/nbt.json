@@ -1,12 +1,1 @@
-[
-  {
-    "type": "regex",
-    "regex": ">#display>#LocName$",
-    "kind": { "type": "text" }
-  },
-  {
-    "type": "regex",
-    "regex": ">#BlockEntityTag>#Text\\d$",
-    "kind": { "type": "text" }
-  }
-]
+[]
